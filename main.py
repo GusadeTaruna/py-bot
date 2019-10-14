@@ -12,13 +12,21 @@ app = Flask(__name__)
 # function for responses
 def results():
     # build a request object
-    req = request.get_json(force=True)
+    req = request.get_json(silent=True, force=True)
+    try:
+        action = req.get('result').get('action')
+    except AttributeError:
+        return 'json error'
 
-    # fetch action from json
-    action = req['queryResult']['action']
+    if action == 'check_balance':
+        return {'cek'}
+    elif action == 'booking':
+        return {'books'}
+    else:
+        return {'webhook'}
 
     # return a fulfillment response
-    return {'fulfillmentText': 'This is a response from webhook.'}
+    
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
