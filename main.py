@@ -15,7 +15,7 @@ def webhook():
     """
     req = request.get_json(silent=True, force=True)
     try:
-        action = req.get('result').get('action')
+        action = req.get('queryResult').get('action')
     except AttributeError:
         return 'json error'
 
@@ -39,7 +39,7 @@ def webhook():
     return make_response(jsonify({"fulfillmentText": res}))
 
 def check_balance(req):
-    parameters = req['result']['parameters']
+    parameters = req['queryResult']['parameters']
 
     print('Dialogflow parameters:')
     print(json.dumps(parameters, indent=4))
@@ -81,7 +81,7 @@ def MySQL(querry):
             print("MySQL connection is closed")
 
 def get_transactions(req):
-    parameters = req['result']['parameters']
+    parameters = req['queryResult']['parameters']
     given_name = " " if parameters.get('given-name')=='' else "AND Description Like '%{}%'".format(parameters.get('given-name'))
     #given_name = "AND Description='{}'".format(parameters.get('given-name') if parameters.get('given-name') != '' else " ")
     date_now = datetime.datetime.now()
@@ -160,7 +160,7 @@ def get_cibilscore(req):
     return 'Your CIBIL score is: %s' % cibil
 
 def loan_eligibil(req):
-    parameters = req['result']['parameters']
+    parameters = req['queryResult']['parameters']
     res = get_cibilscore(req)
     type_of_loan = parameters.get('type_of_loan')
     if type_of_loan == 'student loan':
@@ -170,7 +170,7 @@ def loan_eligibil(req):
     return res
 
 def account_spending(req):
-    parameters = req['result']['parameters']
+    parameters = req['queryResult']['parameters']
     date_now = datetime.datetime.now()
     merchant_name = parameters.get('merchant')
     category = parameters.get('category')
