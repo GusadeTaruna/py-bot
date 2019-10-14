@@ -15,6 +15,7 @@ def results():
     req = request.get_json(force=True)
 
     # fetch action from json
+    flag = 0;
     action = req['queryResult']['action']
 
     #AWAL INTENT SAPA
@@ -46,9 +47,7 @@ def results():
     #AWAL INTENT PROSESBOOKING
     elif action == 'pesan':
         parameters = req['queryResult']['parameters']
-        flag = 0;
         # inputan = req['queryResult']['queryText']
-        if parameters.get('booking'):
             if flag = 1:
                 if str(parameters.get('booking')) == str('KR001'):
                      respon = 'Ada'
@@ -58,11 +57,12 @@ def results():
                     return {'fulfillmentText': respon}
             else:
                 flag=1;
-                balasan = 'Input ID Karyawan untuk memulai proses booking'
-                return {'fulfillmentText': balasan}
-        else:
-            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': balasan}
+                if parameters.get('booking'):
+                        balasan = 'Input ID Karyawan untuk memulai proses booking'
+                        return {'fulfillmentText': balasan}
+                else:
+                    balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                    return {'fulfillmentText': balasan}
 
         
     #AKHIR INTENT PROSESBOOKING
