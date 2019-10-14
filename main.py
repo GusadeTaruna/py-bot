@@ -26,7 +26,8 @@ def results():
                 balasan = 'Selamat datang di yumibot!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
             else:
-                return {'fulfillmentText': 'Gagal'}
+                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                return {'fulfillmentText': balasan}
 
     elif action == 'booking':
     # return a fulfillment response
