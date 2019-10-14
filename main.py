@@ -19,6 +19,8 @@ def results():
 
     #AWAL INTENT SAPA
     if action == 'sapa': 
+        balasan = 'Selamat datang di yumibot!\nSilahkan Input ID Karyawan untuk menggunakan bot'
+        return {'fulfillmentText': balasan}
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
