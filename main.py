@@ -10,28 +10,29 @@ import calendar
 app = Flask(__name__)
 
 # function for responses
-def results():
-    # build a request object
+# def results():
+#     # build a request object
+   
+
+#     # return a fulfillment response
+    
+
+# create a route for webhook
+@app.route('/webhook', methods=['POST'])
+def webhook():
     req = request.get_json(force=True)
     try:
         action = reg['queryResult']['action']
     except AttributeError:
         return 'json error'
     if action == 'check_balance':
-        return {'cek'}
+        reply = {'fulfillmentText': 'kec'}
     elif action == 'booking':
-        return {'books'}
+        reply = {'fulfillmentText': 'buks'}
     else:
-        return {'webhook'}
-
-    # return a fulfillment response
-    
-
-# create a route for webhook
-@app.route('/webhook', methods=['POST'])
-def webhook():
+        reply = {'fulfillmentText': 'hm'}
     # return response
-    return make_response(jsonify(results()))
+    return jsonify(reply)
 
 # run the app
 if __name__ == '__main__':
