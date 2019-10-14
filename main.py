@@ -20,6 +20,9 @@ def results():
     if action == 'check_balance':
     # return a fulfillment response
         return {'fulfillmentText': 'This is a response from webhook.'}
+    elif action == 'booking':
+    # return a fulfillment response
+        return {'fulfillmentText': 'yes'}
     else:
         return {'fulfillmentText': 'not'}
 
