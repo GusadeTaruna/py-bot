@@ -46,16 +46,20 @@ def results():
     #AWAL INTENT PROSESBOOKING
     elif action == 'pesan':
         parameters = req['queryResult']['parameters']
+        flag = 0;
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
-            balasan = 'Input ID Karyawan untuk memulai proses booking'
-            return {'fulfillmentText': balasan}
-            if str(parameters.get('booking')) == str('KR001'):
-                 respon = 'Ada'
-                 return {'fulfillmentText': respon}
+            if flag = 1:
+                if str(parameters.get('booking')) == str('KR001'):
+                     respon = 'Ada'
+                     return {'fulfillmentText': respon}
+                else:
+                    respon = 'Gaada'
+                    return {'fulfillmentText': respon}
             else:
-                respon = 'Gaada'
-                return {'fulfillmentText': respon}
+                flag=1;
+                balasan = 'Input ID Karyawan untuk memulai proses booking'
+                return {'fulfillmentText': balasan}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
