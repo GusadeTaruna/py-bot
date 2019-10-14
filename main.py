@@ -13,7 +13,6 @@ app = Flask(__name__)
 def results():
     # build a request object
     req = request.get_json(force=True)
-    begin = ["How", "Hi", "Hey", "How are you doing", "How's it going", "How", "Hello"]
 
     # fetch action from json
     action = req['queryResult']['action']
@@ -21,13 +20,12 @@ def results():
     if action == 'check_balance':
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
-        keyword = req['queryResult']['queryText']
+        inputan = req['queryResult']['queryText']
         if parameters.get('account'):
-            if keyword in begin
-                if str(begin.index(keyword)):
-                    return {'fulfillmentText': 'Berhasil'}
-                else:
-                    return {'fulfillmentText': 'Gagal'}
+            if str(parameters.get('account')) == inputan:
+                return {'fulfillmentText': 'Berhasil'}
+            else:
+                return {'fulfillmentText': 'Gagal'}
 
     elif action == 'booking':
     # return a fulfillment response
