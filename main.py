@@ -50,8 +50,7 @@ def results():
         if parameters.get('booking'):
             balasan = 'Input ID Karyawan untuk memulai proses booking'
             return {'fulfillmentText': balasan}
-            inputan = req['queryResult']['queryText']
-            if inputan == 'gusade':
+            if str(parameters.get('booking')) == str('KR001'):
                  respon = 'Ada'
                  return {'fulfillmentText': respon}
             else:
