@@ -20,9 +20,9 @@ def results():
     if action == 'check_balance':
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
-        inputan = req['queryResult']['queryText']
+        # inputan = req['queryResult']['queryText']
         if parameters.get('account'):
-            if inputan == parameters.get('account'):
+            if str(parameters.get('account')) == str('hai'):
                 return {'fulfillmentText': 'Berhasil'}
             else:
                 return {'fulfillmentText': 'Gagal'}
