@@ -15,7 +15,7 @@ def results():
     req = request.get_json(force=True)
 
     # fetch action from json
-    action = req.get('queryResult').get('action')
+    action = req['queryResult']['action']
 
     # return a fulfillment response
     return {'fulfillmentText': 'This is a response from webhook.'}
