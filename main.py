@@ -16,10 +16,9 @@ def results():
 
     # fetch action from json
     action = req.get('queryResult').get('action')
-    if action == 'check_balance'
-        return {'fulfillmentText': 'This is a response from webhook.'}
+
     # return a fulfillment response
-    
+    return {'fulfillmentText': 'This is a response from webhook.'}
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
