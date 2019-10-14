@@ -43,18 +43,11 @@ def check_balance(req):
     uses the template responses found in weather_responses.py as templates
     """
     parameters = req['queryResult']['parameters']
-
-    print('Dialogflow Parameters:')
-    print(json.dumps(parameters, indent=4))
-
     # validate request parameters, return an error if there are issues
-    error, forecast_params = validate_params(parameters)
-    if error:
-        return error
 
     if parameters.get('account')
         response = 'respon1'
-
+        
     return response
 
 
