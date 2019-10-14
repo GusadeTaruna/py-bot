@@ -18,8 +18,8 @@ def results():
     action = req['queryResult']['action']
 
     #AWAL INTENT SAPA
-     inputan = req['queryResult']['queryText']
-     if inputan == 'hmm':
+    inputan = req['queryResult']['queryText']
+    if inputan == 'hmm':
         balasan = 'Selamat datang di yumibot!\nSilahkan Input ID Karyawan untuk menggunakan bot'
         return {'fulfillmentText': balasan}
         if action == 'sapa': 
