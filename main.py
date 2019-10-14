@@ -8,7 +8,7 @@ import calendar
 app = Flask(__name__)
 log = app.logger
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     """This method handles the http requests for the Dialogflow webhook
     This is meant to be used in conjunction with the Banking Dialogflow agent
