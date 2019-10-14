@@ -22,7 +22,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
-            if str(parameters.get('ucapan')) == str.lower('hei'):
+            if str(parameters.get('ucapan')) == str('hei').lower():
                 balasan = 'Selamat datang di yumibot!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
             else:
