@@ -50,17 +50,18 @@ def results():
         if parameters.get('booking'):
             balasan = 'Input ID Karyawan untuk memulai proses booking'
             return {'fulfillmentText': balasan}
+            inputan = req['queryResult']['queryText']
+            if inputan == 'gusade':
+                 respon = 'Ada'
+                 return {'fulfillmentText': respon}
+            else:
+                respon = 'Gaada'
+                return {'fulfillmentText': respon}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
 
-        inputan = req['queryResult']['queryText']
-        if inputan == 'gusade':
-             respon = 'Ada'
-             return {'fulfillmentText': respon}
-        else:
-            respon = 'Gaada'
-            return {'fulfillmentText': respon}
+        
     #AKHIR INTENT PROSESBOOKING
 
 
