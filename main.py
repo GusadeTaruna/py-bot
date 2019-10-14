@@ -17,21 +17,27 @@ def results():
     # fetch action from json
     action = req['queryResult']['action']
 
-    if action == 'check_balance':
+    if action == 'sapa':
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
-        if parameters.get('account'):
-            if str(parameters.get('account')) == str('hai'):
+        if parameters.get('ucapan'):
+            if str(parameters.get('ucapan')) == str('hai'):
                 balasan = 'Selamat datang di yumibot!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
 
-    elif action == 'booking':
-    # return a fulfillment response
-        return {'fulfillmentText': 'yes'}
+    elif action == 'daftar':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('perintah'):
+            balasan = 'test'
+            return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
 
     else:
         return {'fulfillmentText': 'not'}
