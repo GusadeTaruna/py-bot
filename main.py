@@ -22,18 +22,17 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
-            if str(parameters.get('ucapan')) == str('hai'):
-                balasan = 'Selamat datang di yumibot!\nKetik list untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': balasan}
-            else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': balasan}
+            balasan = 'Selamat datang di yumibot!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
 
     elif action == 'daftar':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('perintah'):
-            balasan = 'test'
+            balasan = 'LIST PERINTAH YANG TERSEDIA\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
             return {'fulfillmentText': balasan}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
