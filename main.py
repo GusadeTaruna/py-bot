@@ -36,7 +36,7 @@ def webhook():
     elif action == 'account.spending.check':
         res = account_spending(req)
 
-    return make_response(jsonify({"speech": res}))
+    return make_response(jsonify({"fulfillmentText": res}))
 
 def check_balance(req):
     parameters = req['result']['parameters']
