@@ -10,46 +10,21 @@ import calendar
 app = Flask(__name__)
 
 # function for responses
-# def results():
-#     # build a request object
-   
+def results():
+    # build a request object
+    req = request.get_json(force=True)
 
-#     # return a fulfillment response
-    
+    # fetch action from json
+    action = req['queryResult']['action']
+
+    # return a fulfillment response
+    return {'fulfillmentText': 'This is a response from webhook.'}
 
 # create a route for webhook
-@app.route('/webhook', methods=['GET','POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
-    try:
-        action = reg['queryResult']['action']
-    except AttributeError:
-        return 'json error'
-
-    if action == 'check_balance':
-        res = check_balance(req)
-    else:
-        log.error('Unexpected action.')
-
-    print('Action: ' + action)
-    print('Response: ' + res)
-
-    return make_response(jsonify({'fulfillmentText': res}))
-
-def check_balance(req):
-    """Returns a string containing text with a response to the user
-    with the weather forecast or a prompt for more information
-    Takes the city for the forecast and (optional) dates
-    uses the template responses found in weather_responses.py as templates
-    """
-    parameters = req['queryResult']['parameters']
-    # validate request parameters, return an error if there are issues
-
-    if parameters.get('account')
-        response = 'respon1'
-        
-    return response
-
+    # return response
+    return make_response(jsonify(results()))
 
 # run the app
 if __name__ == '__main__':
