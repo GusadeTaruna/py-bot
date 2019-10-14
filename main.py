@@ -29,7 +29,7 @@ def results():
 
 
 def check_balance(req):
-    parameters = req['result']['parameters']
+    parameters = req['queryResult']['parameters']
     if parameters.get('account'):
         if str(parameters.get('account')) == str('cek'):
             return 'Berhasil'
