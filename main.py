@@ -17,7 +17,8 @@ def results():
     # fetch action from json
     action = req['queryResult']['action']
 
-    if action == 'sapa':
+    #AWAL INTENT SAPA
+    if action == 'sapa': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
@@ -28,7 +29,9 @@ def results():
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
+    #AKHIR INTENT SAPA
 
+    #AWAL INTENT DAFTAR
     elif action == 'daftar':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
@@ -38,6 +41,28 @@ def results():
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
+    #AKHIR INTENT SAPA
+
+    #AWAL INTENT PROSESBOOKING
+    elif action == 'pesan':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('booking'):
+            balasan = 'Input ID Karyawan untuk memulai proses booking'
+            return {'fulfillmentText': balasan}
+            inputan = req['queryResult']['queryText']
+            if str(inputan) == str('gusade'):
+                 respon = 'Ada'
+                 return {'fulfillmentText': respon}
+            else:
+                respon = 'Gaada'
+                return {'fulfillmentText': respon}
+
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
+    #AKHIR INTENT PROSESBOOKING
+
 
     else:
         return {'fulfillmentText': 'not'}
