@@ -14,7 +14,7 @@ def results():
     # build a request object
     req = request.get_json(silent=True, force=True)
     try:
-        action = req.get('result').get('action')
+        action = reg['queryResult']['action']
     except AttributeError:
         return 'json error'
 
