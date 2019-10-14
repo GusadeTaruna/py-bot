@@ -22,8 +22,8 @@ def results():
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         keyword = req['queryResult']['queryText']
-        if keyword in begin
-            if parameters.get('account'):
+        if parameters.get('account'):
+            if keyword in begin
                 if str(parameters.get('account')) == str(begin.index(keyword)):
                     return {'fulfillmentText': 'Berhasil'}
                 else:
