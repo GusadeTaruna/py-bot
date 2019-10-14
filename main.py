@@ -19,22 +19,23 @@ def results():
 
     if action == 'check_balance':
     # return a fulfillment response
-        res = check_balance(req)
-        return make_response(jsonify({"fulfillmentText": res}))
+        parameters = req['queryResult']['parameters']
+        if parameters.get('account'):
+            if str(parameters.get('account')) == str('cek'):
+                return {'fulfillmentText': 'Berhasil'}
+            else:
+                return {'fulfillmentText': 'Gagal'}
+
     elif action == 'booking':
     # return a fulfillment response
         return {'fulfillmentText': 'yes'}
+
     else:
         return {'fulfillmentText': 'not'}
 
 
-def check_balance(req):
-    parameters = req['queryResult']['parameters']
-    if parameters.get('account'):
-        if str(parameters.get('account')) == str('cek'):
-            return 'Berhasil'
-        else:
-            return 'Gagal'
+
+    
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
