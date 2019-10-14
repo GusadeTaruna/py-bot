@@ -22,7 +22,7 @@ def results():
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
         if parameters.get('account'):
-            if str(parameters.get('account')) == inputan:
+            if inputan == parameters.get('account'):
                 return {'fulfillmentText': 'Berhasil'}
             else:
                 return {'fulfillmentText': 'Gagal'}
