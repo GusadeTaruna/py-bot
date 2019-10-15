@@ -15,10 +15,17 @@ def results():
     req = request.get_json(force=True)
 
 
-    mySQLconnection = mysql.connector.connect(host='www.db4free.net',
+    try:
+        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
                     database='db_resource',
                     user='gusade',
                     password='gusade09')
+        cursor = mySQLconnection .cursor()
+
+    except Error as e :
+        print ("Error while connecting to MySQL", e)
+
+
     # fetch action from json
     action = req['queryResult']['action']
 
@@ -28,14 +35,15 @@ def results():
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
         if parameters.get('kode'):
+            bal = ''
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            cursor = mySQLconnection .cursor()
-            sql = "select nama_karyawan from tb_karyawan"
+            sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal=row[0]
-                return {'fulfillmentText': 'Nama : %s' %bal}
+                bal = row[0]
+                # balasan = 'Selamat Datang %s' % bal
+            return {'fulfillmentText': 'Selamat Datang %s' % bal}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
