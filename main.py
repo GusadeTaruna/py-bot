@@ -68,10 +68,9 @@ def results():
             records = "select nama_resource from tb_resource"
             cursor.execute(records)
             records = cursor.fetchall()
-            global pinjam
             for row in records:
                 pinjam = row[0]
-            rep 'Resource yang ada :\n %s' % pinjam
+            rep = 'Resource yang ada :\n %s' % pinjam
             return {'fulfillmentText': rep}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
