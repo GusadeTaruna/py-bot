@@ -76,12 +76,13 @@ def results():
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
             if str(parameters.get('booking')) == str('Booking'.lower()):
-                records = "select nama_resource from tb_resource"
+                records = "select kode_resource,nama_resource from tb_resource"
                 cursor.execute(records)
                 records = cursor.fetchall()
                 for row in records:
-                    pinjam = row[0]
-                    rep = 'Resource yang ada :\n %s\n\n Apa yang ingin anda pinjam ?' % pinjam
+                    kodeR = row[0]
+                    namaR = row[1]
+                    rep = 'Resource yang ada :\n %s'% namaR+'Kode(%s'% kodeR+')\n\n Apa yang ingin anda pinjam ?'
                 return {'fulfillmentText': rep}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
