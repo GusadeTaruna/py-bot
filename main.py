@@ -23,7 +23,7 @@ def results():
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
-            # if str(parameters.get('ucapan')) == str('Hai'.lower()):
+            if str(parameters.get('ucapan')) == str('Hai'.lower()):
                records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
                for row in records:
                 bal = row[0]
