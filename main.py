@@ -36,13 +36,13 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('kode'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            sql = "select alamat,nama_karyawan from tb_karyawan"
-            cursor.execute(sql)
+            sql = "select nama_karyawan from tb_karyawan"
+            cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                alamat = row[0]
-                nama = row[1]
-                balasan = 'Selamat Datang %s\n' %nama+'Tempat tinggal %s'%alamat
+                bal = []
+                bal.append(row[0])
+                balasan = 'Selamat Datang %s' % bal
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
