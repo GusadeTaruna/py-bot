@@ -35,7 +35,7 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal=row[0]
-                return {'fulfillmentText': bal}
+                return {'fulfillmentText': 'Nama : %s' %bal}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
