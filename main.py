@@ -40,7 +40,7 @@ def results():
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal = row[0]
+                bal = row["nama_karyawan"]
                 balasan = 'Selamat Datang %s' % bal
                 return {'fulfillmentText': balasan}
             else:
