@@ -43,8 +43,6 @@ def results():
                 bal = row[0]
                 balasan = 'Selamat Datang %s' % bal
                 return {'fulfillmentText': balasan}
-            cursor.close()
-            
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
