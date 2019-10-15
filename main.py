@@ -45,7 +45,7 @@ def results():
                 for row in records:
                     bal = row[0]
                     balasan = 'Selamat Datang: %s' % bal
-                    return {'fulfillmentText': balasan}
+                return {'fulfillmentText': balasan}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
