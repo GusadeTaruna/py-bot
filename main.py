@@ -40,8 +40,8 @@ def results():
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal = row[0]
-                balasan = 'Selamat Datang %s' % bal
+                # bal = row[0]
+                balasan = "Selamat datang {}".format(row[0])
                 reply = {"fulfillmentText": balasan,}
                 return jsonify(reply)
             else:
