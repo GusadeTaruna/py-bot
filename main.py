@@ -73,6 +73,7 @@ def results():
                 pinjam = row[0]
             rep = 'Resource yang ada :\n %s' % pinjam
             return {'fulfillmentText': rep}
+            return {'fulfillmentText': 'Test'}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
