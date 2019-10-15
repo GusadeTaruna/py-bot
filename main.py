@@ -73,9 +73,9 @@ def results():
                 pinjam = row[0]
             rep = 'Resource yang ada :\n %s\n\n Apa yang ingin anda pinjam ?' % pinjam
             return {'fulfillmentText': rep}
-            else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
 
     #AKHIR INTENT PROSESBOOKING
 
