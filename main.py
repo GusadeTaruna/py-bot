@@ -41,8 +41,10 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
-                balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
-                return {'fulfillmentText': balasan}
+            balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
+            return {'fulfillmentText': balasan}
+
+            
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
@@ -65,6 +67,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
+            if str(parameters.get('booking')) == str('Booking'.lower()):
             records = "select nama_resource from tb_resource"
             cursor.execute(records)
             records = cursor.fetchall()
