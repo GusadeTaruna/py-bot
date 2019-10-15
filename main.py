@@ -16,36 +16,19 @@ def results():
 
     # fetch action from json
     action = req['queryResult']['action']
-    try:
-        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
-                    database='db_resource',
-                    user='gusade',
-                    password='gusade09')
-        cursor = mySQLconnection .cursor()
-
-    except Error as e :
-        print ("Error while connecting to MySQL", e)
-
-    finally:
-        if(mySQLconnection .is_connected()):
-            mySQLconnection.close()
-            print("MySQL connection is closed")
 
     #AWAL INTENT SAPA
     if action == 'sapa': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
-        inputan = req['queryResult']['queryText']
+        # inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             if str(parameters.get('ucapan')) == str('Hai'.lower()):
-                # sql= MySQL("INSERT INTO tb_karyawan (kode_karyawan, nama_karyawan, alamat, no_telp, jenis_kelamin) VALUES (%s, %s, %s, %s, %s)");
-                sql = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
-                cursor.execute(sql)
-                records = cursor.fetchall()
+                records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
                 for row in records:
                     bal = row[0]
                     balasan = 'Selamat Datang: %s' % bal
-                return {'fulfillmentText': balasan}
+                    return {'fulfillmentText': balasan}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
@@ -81,23 +64,25 @@ def results():
         return {'fulfillmentText': 'not'}
 
 
-# def MySQL(querry):
-#     try:
-#         mySQLconnection = mysql.connector.connect(host='www.db4free.net',
-#                     database='db_resource',
-#                     user='gusade',
-#                     password='gusade09')
-#         sql = querry
-#         cursor = mySQLconnection .cursor()
-#         return sql
+def MySQL(querry):
+    try:
+        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
+                    database='db_resource',
+                    user='gusade',
+                    password='gusade09')
+        sql_select_Query = querry
+        cursor = mySQLconnection .cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        return records
 
-#     except Error as e :
-#         print ("Error while connecting to MySQL", e)
+    except Error as e :
+        print ("Error while connecting to MySQL", e)
 
-#     finally:
-#         if(mySQLconnection .is_connected()):
-#             mySQLconnection.close()
-#             print("MySQL connection is closed")
+    finally:
+        if(mySQLconnection .is_connected()):
+            mySQLconnection.close()
+            print("MySQL connection is closed")
 
     
 
