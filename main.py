@@ -36,8 +36,8 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('kode'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            sql = "select alamat,nama_karyawan from tb_karyawan where kode_karyawan=%s"
-            cursor.execute(sql, (inputan,))
+            sql = "select alamat,nama_karyawan from tb_karyawan"
+            cursor.execute(sql)
             records = cursor.fetchall()
             for row in records:
                 alamat = row[0]
