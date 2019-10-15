@@ -36,8 +36,8 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            sql = "select nama_karyawan from tb_karyawan where kode_karyawan='KR001'"
-            cursor.execute(sql)
+            sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
+            cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
