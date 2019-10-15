@@ -24,10 +24,8 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR002';")
-               cursor.execute(records)
-               hasil = cursor.fetchall()
-               for row in hasil:
+               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
+               for row in records:
                 bal = row[0]
                 balasan = 'Selamat Datang: %s' % bal
                 return {'fulfillmentText': balasan}
@@ -72,10 +70,10 @@ def MySQL(querry):
                     database='db_resource',
                     user='gusade',
                     password='gusade09')
+        sql_select_Query = querry
         cursor = mySQLconnection .cursor()
-        records = querry
-        # cursor.execute(sql_select_Query)
-        # records = cursor.fetchall()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
         return records
 
     except Error as e :
