@@ -40,8 +40,8 @@ def results():
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal = row[0]
-                balasan = 'Selamat Datang: %s' % bal
+                # bal = row['nama_karyawan']
+                balasan = 'Selamat Datang {}'.format(row['nama_karyawan'])
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
