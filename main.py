@@ -24,11 +24,14 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             if str(parameters.get('ucapan')) == str('Hai'.lower()):
-               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
-               for row in records:
-                bal = row[0]
-                balasan = 'Selamat Datang: %s' % bal
-                return {'fulfillmentText': balasan}
+                # sql= MySQL("INSERT INTO tb_karyawan (kode_karyawan, nama_karyawan, alamat, no_telp, jenis_kelamin) VALUES (%s, %s, %s, %s, %s)");
+                sql = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
+                cursor.execute(sql_select_Query)
+                records = cursor.fetchall()
+                for row in records:
+                    bal = row[0]
+                    balasan = 'Selamat Datang: %s' % bal
+                    return {'fulfillmentText': balasan}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
@@ -70,11 +73,9 @@ def MySQL(querry):
                     database='db_resource',
                     user='gusade',
                     password='gusade09')
-        sql_select_Query = querry
+        sql = querry
         cursor = mySQLconnection .cursor()
-        cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
-        return records
+        return sql
 
     except Error as e :
         print ("Error while connecting to MySQL", e)
