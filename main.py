@@ -43,11 +43,9 @@ def results():
                 bal = row[0]
             balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
             return {'fulfillmentText': balasan}
-
-            
-            else:
-                balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
-                return {'fulfillmentText': balasan}
+        else:
+            balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
+            return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
     #AWAL INTENT DAFTAR
