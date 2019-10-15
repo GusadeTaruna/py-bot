@@ -66,6 +66,8 @@ def results():
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
             records = "select nama_resource from tb_resource"
+            cursor.execute(records)
+            records = cursor.fetchall()
             global pinjam
             for row in records:
                 pinjam = row[0]
