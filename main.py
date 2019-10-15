@@ -40,9 +40,10 @@ def results():
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal = row[0]
-                balasan = 'Selamat Datang: %s' % bal
-                return {'fulfillmentText': balasan}
+                # bal = row[0]
+                bal = "Selamat datang {}\nKetik list perintah untuk melihat daftar perintah yang tersedia".format(row['nama_karyawan'])
+                reply = {"fulfillmentText": bal,}
+                return jsonify(reply)
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
