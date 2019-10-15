@@ -41,7 +41,7 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
-                reply = {"fulfillmentText": bal,}
+                reply = {'fulfillmentText': bal,}
                 return jsonify(reply)
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
