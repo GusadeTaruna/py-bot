@@ -71,12 +71,11 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 pinjam = row[0]
-            rep = 'Resource yang ada :\n %s' % pinjam
+            rep = 'Resource yang ada :\n %s\n\n Apa yang ingin anda pinjam ?' % pinjam
             return {'fulfillmentText': rep}
-            return {'fulfillmentText': 'Test'}
-        else:
-            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': balasan}
+            else:
+                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                return {'fulfillmentText': balasan}
 
     #AKHIR INTENT PROSESBOOKING
 
