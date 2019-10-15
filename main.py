@@ -35,7 +35,7 @@ def results():
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
         if parameters.get('kode'):
-            if str(parameters.get('ucapan')) == str('kr'.lower()):
+            if str(parameters.get('kode')) == str('kr'):
             sql = "select nama_karyawan from tb_karyawan"
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
