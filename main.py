@@ -16,6 +16,20 @@ def results():
 
     # fetch action from json
     action = req['queryResult']['action']
+    try:
+        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
+                    database='db_resource',
+                    user='gusade',
+                    password='gusade09')
+        cursor = mySQLconnection .cursor()
+
+    except Error as e :
+        print ("Error while connecting to MySQL", e)
+
+    finally:
+        if(mySQLconnection .is_connected()):
+            mySQLconnection.close()
+            print("MySQL connection is closed")
 
     #AWAL INTENT SAPA
     if action == 'sapa': 
@@ -26,7 +40,7 @@ def results():
             if str(parameters.get('ucapan')) == str('Hai'.lower()):
                 # sql= MySQL("INSERT INTO tb_karyawan (kode_karyawan, nama_karyawan, alamat, no_telp, jenis_kelamin) VALUES (%s, %s, %s, %s, %s)");
                 sql = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR001';'")
-                cursor.execute(sql_select_Query)
+                cursor.execute(sql)
                 records = cursor.fetchall()
                 for row in records:
                     bal = row[0]
@@ -67,23 +81,23 @@ def results():
         return {'fulfillmentText': 'not'}
 
 
-def MySQL(querry):
-    try:
-        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
-                    database='db_resource',
-                    user='gusade',
-                    password='gusade09')
-        sql = querry
-        cursor = mySQLconnection .cursor()
-        return sql
+# def MySQL(querry):
+#     try:
+#         mySQLconnection = mysql.connector.connect(host='www.db4free.net',
+#                     database='db_resource',
+#                     user='gusade',
+#                     password='gusade09')
+#         sql = querry
+#         cursor = mySQLconnection .cursor()
+#         return sql
 
-    except Error as e :
-        print ("Error while connecting to MySQL", e)
+#     except Error as e :
+#         print ("Error while connecting to MySQL", e)
 
-    finally:
-        if(mySQLconnection .is_connected()):
-            mySQLconnection.close()
-            print("MySQL connection is closed")
+#     finally:
+#         if(mySQLconnection .is_connected()):
+#             mySQLconnection.close()
+#             print("MySQL connection is closed")
 
     
 
