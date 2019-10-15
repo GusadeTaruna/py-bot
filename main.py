@@ -36,14 +36,13 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('kode'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            sql = "select nama_karyawan from tb_karyawan"
+            sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
             cursor.execute(sql, (inputan,))
             records = cursor.fetchall()
             for row in records:
-                bal = []
-                bal.append(row[0])
-                balasan = 'Selamat Datang %s' % bal
-                return {'fulfillmentText': balasan}
+                bal = row[0]
+                reply = {"fulfillmentText": bal,}
+                return jsonify(reply)
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
