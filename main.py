@@ -42,7 +42,7 @@ def results():
             for row in records:
                 alamat = row[0]
                 nama = row[1]
-                balasan = 'Selamat Datang %s, kamu tinggal di %s' %nama %alamat
+                balasan = 'Selamat Datang %s' %nama+' , Tempat tinggal %s'%alamat
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
