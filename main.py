@@ -41,7 +41,7 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
-                balasan = 'Selamat Datang %s\n Ketik listperintah untuk menampilkan perintah yang tersedia' % bal
+                balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
@@ -53,7 +53,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('perintah'):
-            balasan = 'LIST PERINTAH YANG TERSEDIA\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
+            balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
             return {'fulfillmentText': balasan}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
@@ -65,8 +65,12 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
-            balasan = 'Input ID Karyawan untuk memulai proses booking'
-            return {'fulfillmentText': balasan}
+            records = MySQL("select nama_resource from tb_resource;")
+            global pinjam
+            for row in records:
+                pinjam = row[0]
+            rep 'Resource yang ada :\n %s' % pinjam
+            return {'fulfillmentText': rep}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
@@ -98,13 +102,6 @@ def results():
 #             mySQLconnection.close()
 #             print("MySQL connection is closed")
 
-
-def get_resource(req):
-    records = MySQL("select nama_resource from tb_resource;")
-    global pinjam
-    for row in records:
-        pinjam = row[0]
-    return 'Resource yang ada : %s' % pinjam
 
     
 
