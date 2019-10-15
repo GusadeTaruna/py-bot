@@ -24,7 +24,7 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR002'")
+               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan='KR002';")
                cursor.execute(records)
                hasil = cursor.fetchall()
                for row in hasil:
