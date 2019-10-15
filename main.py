@@ -42,7 +42,8 @@ def results():
             for row in records:
                 bal = row[0]
                 balasan = 'Selamat Datang %s' % bal
-                return {'fulfillmentText': balasan}
+                reply = {"fulfillmentText": balasan,}
+                return jsonify(reply)
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
