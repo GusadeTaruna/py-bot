@@ -41,7 +41,7 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
-                balasan = 'Selamat Datang %s' % bal
+                balasan = 'Selamat Datang %s\n Ketik listperintah untuk menampilkan perintah yang tersedia' % bal
                 return {'fulfillmentText': balasan}
             else:
                 balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
@@ -97,6 +97,14 @@ def results():
 #         if(mySQLconnection .is_connected()):
 #             mySQLconnection.close()
 #             print("MySQL connection is closed")
+
+
+def get_resource(req):
+    records = MySQL("select nama_resource from tb_resource;")
+    global pinjam
+    for row in records:
+        pinjam = row[0]
+    return 'Resource yang ada : %s' % pinjam
 
     
 
