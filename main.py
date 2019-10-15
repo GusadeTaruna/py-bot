@@ -33,16 +33,16 @@ def results():
     if action == 'sapa': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
-        # inputan = req['queryResult']['queryText']
+        inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
-            if str(parameters.get('ucapan')) == str('Hai'.lower()):
-                sql = "select nama_karyawan from tb_karyawan where kode_karyawan='KR001'"
-                cursor.execute(sql)
-                records = cursor.fetchall()
-                for row in records:
-                    bal = row[0]
-                    balasan = 'Selamat Datang: %s' % bal
-                    return {'fulfillmentText': balasan}
+            # if str(parameters.get('ucapan')) == str('Hai'.lower()):
+            sql = "select nama_karyawan from tb_karyawan where kode_karyawan='KR001'"
+            cursor.execute(sql)
+            records = cursor.fetchall()
+            for row in records:
+                bal = row[0]
+                balasan = 'Selamat Datang: %s' % bal
+                return {'fulfillmentText': balasan}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
