@@ -65,7 +65,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
-            records = MySQL("select nama_resource from tb_resource;")
+            records = "select nama_resource from tb_resource"
             global pinjam
             for row in records:
                 pinjam = row[0]
