@@ -24,7 +24,7 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('ucapan'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan=inputan;'")
+               records = MySQL("select nama_karyawan from tb_karyawan where kode_karyawan="+inputan+";")
                for row in records:
                 bal = row[0]
                 balasan = 'Selamat Datang: %s' % bal
