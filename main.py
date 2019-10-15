@@ -30,11 +30,11 @@ def results():
     action = req['queryResult']['action']
 
     #AWAL INTENT SAPA
-    if action == 'sapa': 
+    if action == 'karyawan': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
-        if parameters.get('ucapan'):
+        if parameters.get('kode'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
             sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
             cursor.execute(sql, (inputan,))
@@ -43,21 +43,33 @@ def results():
                 bal = row[0]
                 balasan = 'Selamat Datang: %s' % bal
                 return {'fulfillmentText': balasan}
+
+                if action == 'daftar':
+                parameters = req['queryResult']['parameters']
+                # inputan = req['queryResult']['queryText']
+                if parameters.get('perintah'):
+                    balasan = 'LIST PERINTAH YANG TERSEDIA\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
+                    return {'fulfillmentText': balasan}
+                else:
+                    balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                    return {'fulfillmentText': balasan}                
+
+
             else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                balasan = 'ID Karyawan tidak dikenali\nCoba input lagi'
                 return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
     #AWAL INTENT DAFTAR
-    elif action == 'daftar':
-        parameters = req['queryResult']['parameters']
-        # inputan = req['queryResult']['queryText']
-        if parameters.get('perintah'):
-            balasan = 'LIST PERINTAH YANG TERSEDIA\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
-            return {'fulfillmentText': balasan}
-        else:
-            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': balasan}
+    # elif action == 'daftar':
+    #     parameters = req['queryResult']['parameters']
+    #     # inputan = req['queryResult']['queryText']
+    #     if parameters.get('perintah'):
+    #         balasan = 'LIST PERINTAH YANG TERSEDIA\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
+    #         return {'fulfillmentText': balasan}
+    #     else:
+    #         balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+    #         return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
     #AWAL INTENT PROSESBOOKING
