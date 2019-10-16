@@ -121,14 +121,14 @@ def results():
         # inputan = req['queryResult']['queryText']
         if parameters.get('resource'):
             # if str(parameters.get('booking')) == str('Booking'.lower()):
-            sql = "select kode_resource,nama_resource from tb_resource"
+            sql = "SELECT kode_resource,nama_resource FROM tb_resource"
             cursor.execute(sql)
             records = cursor.fetchall()
             for row in records:
                 kodeR = row[0]
                 namaR = row[1]
                 rep = 'Resource yang ada :\n%s '% namaR+'(%s'% kodeR+')\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': rep}
+                return {'fulfillmentText': rep}
         else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
