@@ -40,6 +40,9 @@ def results():
             bal = row[0]
         balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
         return {'fulfillmentText': balasan}
+    else:
+        balasan = 'Gagal' % bal
+        return {'fulfillmentText': balasan}        
 
     elif parameters.get('perintah'):
         balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
