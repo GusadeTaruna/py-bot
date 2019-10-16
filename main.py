@@ -128,7 +128,7 @@ def results():
                 kodeR = row[0]
                 namaR = row[1]
                 rep = 'Resource yang ada :\n%s '% namaR+'(%s'% kodeR+')\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': rep}
+                print(rep)
         else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
@@ -166,7 +166,7 @@ def results():
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     # return response
-    return make_response(jsonify(results()))
+    print make_response(jsonify(results()))
 
 # run the app
 if __name__ == '__main__':
