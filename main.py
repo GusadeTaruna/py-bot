@@ -124,6 +124,7 @@ def results():
             sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
             cursor.execute(sql)
             records = cursor.fetchall()
+            st = ''
             for row in records:
                 if row[0]==0:
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
