@@ -42,8 +42,32 @@ def results():
         return {'fulfillmentText': balasan}       
 
     elif parameters.get('perintah'):
-        balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
-        return {'fulfillmentText': balasan}
+        # balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
+        response = {
+            'fulfillmentMessages': [
+                {
+                    "card": {
+                        "title": "LIST PERINTAH",
+                        "buttons": [
+                            {
+                                "text": "Booking (Untuk pesan resource)",
+                                "postback": "booking"
+                            },
+                            {
+                                "text": "lihatresource (Untuk melihat ketersediaan resource)",
+                                "postback": "lihatresource"
+                            },
+                            {
+                                "text": "lihatdatapinjam (Untuk melihat data peminjaman resource)",
+                                "postback": "lihatdatapinjam"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+
+        return response
 
     elif parameters.get('menusatu'):
         sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
