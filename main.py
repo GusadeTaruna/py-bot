@@ -30,13 +30,10 @@ def results():
     if parameters.get('sapa'):
         balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
         return {'fulfillmentText': balasan}
-    else:
-        balasan = 'Inputan yang anda masukkan tidak dikenali!\nCoba input lagi'
-        return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
 
-    if parameters.get('kode'):
+    elif parameters.get('kode'):
         inputan = req['queryResult']['queryText']
         sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
         cursor.execute(sql, (inputan,))
