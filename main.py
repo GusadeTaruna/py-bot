@@ -128,7 +128,7 @@ def results():
                 kodeR = row[0]
                 namaR = row[1]
                 rep = 'Resource yang ada :\n%s '% namaR+'(%s'% kodeR+')\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
-                print(rep)
+                return {'fulfillmentText': print(rep)}
         else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
