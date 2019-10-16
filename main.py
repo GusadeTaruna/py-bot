@@ -32,6 +32,7 @@ def results():
         return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
+
     elif parameters.get('kode'):
         inputan = req['queryResult']['queryText']
         sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
