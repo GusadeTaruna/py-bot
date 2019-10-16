@@ -55,7 +55,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('sapa'):
-            if str(parameters.get('sapa')) == str('Hai'.lower()):
+            if str(parameters.get('sapa')) == str('hai'):
                 balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
                 return {'fulfillmentText': balasan}
             else:
@@ -69,7 +69,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('perintah'):
-            if str(parameters.get('perintah')) == str('listperintah'.lower()):
+            if str(parameters.get('perintah')) == str('listperintah'):
                 balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
                 return {'fulfillmentText': balasan}
             else:
@@ -84,7 +84,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
-            if str(parameters.get('booking')) == str('Booking'.lower()) or str('1'):
+            if str(parameters.get('booking')) == str('booking') or str('1'):
                 sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
                 cursor.execute(sql)
                 records = cursor.fetchall()
@@ -131,7 +131,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('resource'):
-            if str(parameters.get('resource')) == str('lihatresource'.lower()) or str('2'):
+            if str(parameters.get('resource')) == str('lihatresource') or str('2'):
                 sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
                 cursor.execute(sql)
                 records = cursor.fetchall()
@@ -163,7 +163,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('listpinjam'):
-            if str(parameters.get('listpinjam')) == str('lihatdatapinjam'.lower()) or str('3') :
+            if str(parameters.get('listpinjam')) == str('lihatdatapinjam') or str('3') :
                 sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource"
                 cursor.execute(sql)
                 records = cursor.fetchall()
