@@ -146,8 +146,8 @@ def results():
                 "fulfillmentMessages": [
                     {
                         "card": {
-                            "title": st,
-                            "subtitle": "Ketik listperintah untuk kembali",
+                            "title": "--- LIST RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)",
+                            "subtitle": st,
                         },
                     },
                 ],
