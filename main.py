@@ -94,12 +94,12 @@ def results():
         inputan = req['queryResult']['queryText']
         if parameters.get('kodepinjam'):
             # if str(parameters.get('ucapan')) == str('Hai'.lower()):
-            sql = "INSERT INTO tb_pinjam_resource (kode_resource) VALUES (%s)"
-            cursor.execute(sql, (inputan,))
+            sql = "INSERT INTO tb_pinjam_resource (kode_resource,tanggal_peminjaman) VALUES (%s ,%s)"
+            cursor.execute(sql, (inputan,date.today().strftime("%Y-%m-%d")))
             mySQLconnection.commit()
-            return {'fulfillmentText': 'Masukkan tanggal mulai pinjam'}
+            return {'fulfillmentText': 'Resource berhasil disimpan !\n\nKetik Menu untuk kembali'}
         else:
-            return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
+            return {'fulfillmentText': 'Kode Resource tidak dikenali\nCoba input lagi'}
     #AKHIR INTENT PROSESBOOKING
 
 
