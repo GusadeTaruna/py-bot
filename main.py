@@ -98,7 +98,7 @@ def results():
                     "fulfillmentMessages": [
                         {
                             "card": {
-                                "title": "hmm",
+                                "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)",
                                 "subtitle": st
                             },
                         },
