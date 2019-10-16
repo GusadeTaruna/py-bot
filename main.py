@@ -146,7 +146,39 @@ def results():
                 "fulfillmentMessages": [
                     {
                         "card": {
-                            "title": "--- LIST RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)",
+                            "title": "--- LIST RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
+                            "subtitle": st,
+                        },
+                    },
+                ],
+            }
+            return balasan
+        else:
+            balasan = 'Inputan tidak dikenali\nCoba input kembali'
+            return {'fulfillmentText': balasan}
+    #AKHIR INTENT PROSESBOOKING
+
+
+    #AWAL INTENT PROSESBOOKING
+    elif action == 'pinjaman':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('listpinjam'):
+            # if str(parameters.get('booking')) == str('Booking'.lower()):
+            sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource"
+            cursor.execute(sql)
+            records = cursor.fetchall()
+            st = ''
+            for row in records:
+                if row[0]==0:
+                    st = st + 'Kode Karyawan: %s\n'%row[1]+',Kode resource: %s\n'%row[2]+',Tanggal Pinjam : %s\n'%row[3]+"\n"
+                else:
+                    st = st + 'Kode Karyawan: %s\n'%row[1]+',Kode resource: %s\n'%row[2]+',Tanggal Pinjam : %s\n'%row[3]+"\n"
+            balasan = {
+                "fulfillmentMessages": [
+                    {
+                        "card": {
+                            "title": "--- DATA BOOKING RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
                             "subtitle": st,
                         },
                     },
