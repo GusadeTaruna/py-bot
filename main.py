@@ -85,16 +85,36 @@ def results():
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
             if str(parameters.get('booking')) == str('Booking'.lower()) or str('1'):
-                sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
-                cursor.execute(sql)
-                records = cursor.fetchall()
-                st = ''
-                for row in records:
-                    if row[0]==0:
-                        st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                    else:
-                        st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                return {'fulfillmentText': st}
+                # sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
+                # cursor.execute(sql)
+                # records = cursor.fetchall()
+                # st = ''
+                # for row in records:
+                #     if row[0]==0:
+                #         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+                #     else:
+                #         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+                response = {
+                    'fulfillmentMessages': [
+                        {
+                            "card": {
+                                "title": "Menu",
+                                "subtitle": "Halo test, Silahkan pilih menu di bawah",
+                                "buttons": [
+                                    {
+                                        "text": "Surat izin Usaha Perdagangan",
+                                        "postback": "usaha perdagangan"
+                                    },
+                                    {
+                                        "text": "Pengajuan Izin Reklame",
+                                        "postback": "izin reklame"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+                return response
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
