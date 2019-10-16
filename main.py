@@ -89,13 +89,13 @@ def results():
                 cursor.execute(queryR)
                 records = cursor.fetchall()
                 st = ''
-                return {'fulfillmentText': 'List resource\n'}
                 for row in records:
                     if row[0]==0:
                         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                     else:
                         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                return {'fulfillmentText': st}
+                        header = 'LIST PERINTAH\n'
+                return {'fulfillmentText': '%s, %s' %header %st}
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
