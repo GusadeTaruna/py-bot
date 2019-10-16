@@ -148,16 +148,12 @@ def results():
                         "card": {
                             "title": "--- LIST RESOURCE TERSEDIA ---\n\n",
                             "subtitle": st,
-                            "subtitle": "Ketik listperintah untuk kembali"
                         },
                     },
                 ],
             }
             return balasan
         else:
-            balasan = 'Inputan tidak dikenali\nCoba input kembali'
-            return {'fulfillmentText': balasan}
-    else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
     #AKHIR INTENT PROSESBOOKING
