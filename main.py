@@ -32,7 +32,6 @@ def results():
         return {'fulfillmentText': balasan}
     #AKHIR INTENT SAPA
 
-
     elif parameters.get('kode'):
         inputan = req['queryResult']['queryText']
         sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
@@ -42,8 +41,8 @@ def results():
             bal = row[0]
         balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
         return {'fulfillmentText': balasan}
-        else:
-            return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
+    else:
+        return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
     #AKHIR INTENT cekKaryawan
 
     if parameters.get('perintah'):
