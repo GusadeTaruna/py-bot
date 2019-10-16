@@ -109,7 +109,7 @@ def results():
         if parameters.get('resource'):
             # if str(parameters.get('booking')) == str('Booking'.lower()):
             sql = "select kode_resource,nama_resource from tb_resource"
-            cursor.execute(queryR)
+            cursor.execute(sql)
             records = cursor.fetchall()
             for row in records:
                 kodeR = row[0]
