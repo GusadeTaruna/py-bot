@@ -166,7 +166,7 @@ def results():
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     # return response
-    print make_response(jsonify(results()))
+    return make_response(jsonify(results()))
 
 # run the app
 if __name__ == '__main__':
