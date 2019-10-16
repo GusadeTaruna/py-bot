@@ -130,7 +130,7 @@ def results():
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                 else:
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                return {'fulfillmentText': st}
+            return {'fulfillmentText': st}
         else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
