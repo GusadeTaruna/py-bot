@@ -71,7 +71,7 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
-            if str(parameters.get('booking')) == str('Booking'.lower()):
+            if str(parameters.get('booking')) == str('Booking'.lower()) or str('1'):
                 queryR = "select kode_resource,nama_resource from tb_resource"
                 cursor.execute(queryR)
                 records = cursor.fetchall()
