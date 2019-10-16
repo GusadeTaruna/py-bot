@@ -43,7 +43,7 @@ def results():
 
 
     #AWAL INTENT cekKaryawan
-    elif action == 'karyawan': 
+    if action == 'karyawan': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
@@ -63,7 +63,7 @@ def results():
 
 
     #AWAL INTENT DAFTAR
-    elif action == 'daftar':
+    if action == 'daftar':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('perintah'):
@@ -78,7 +78,7 @@ def results():
 
 
     #AWAL INTENT PROSESBOOKING
-    elif action == 'pesan':
+    if action == 'pesan':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
@@ -110,7 +110,7 @@ def results():
 
 
     #AWAL INTENT PROSESBOOKING
-    elif action == 'menusatu': 
+    if action == 'menusatu': 
         parameters = req['queryResult']['parameters']
         kodeResource = req['queryResult']['queryText']
         if parameters.get('kodepinjam'):
@@ -125,7 +125,7 @@ def results():
 
 
     #AWAL INTENT PROSESBOOKING
-    elif action == 'daftarResource':
+    if action == 'daftarResource':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('resource'):
@@ -157,7 +157,7 @@ def results():
 
 
     #AWAL INTENT PROSESBOOKING
-    elif action == 'pinjaman':
+    if action == 'pinjaman':
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('listpinjam'):
