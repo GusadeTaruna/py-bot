@@ -148,7 +148,7 @@ def results():
                         "card": {
                             "title": "--- LIST RESOURCE TERSEDIA ---\n\n",
                             "subtitle": st,
-                            "subtitle": "Ketik listperintah untuk kembali",
+                            "subtitle": "Ketik listperintah untuk kembali"
                         },
                     },
                 ],
