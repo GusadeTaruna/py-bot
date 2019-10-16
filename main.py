@@ -97,8 +97,7 @@ def results():
             sql = "INSERT INTO tb_pinjam_resource (kode_resource) VALUES (%s)"
             cursor.execute(sql, (inputan,))
             mySQLconnection.commit()
-            balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
-            return {'fulfillmentText': balasan}
+            return {'fulfillmentText': 'Masukkan tanggal mulai pinjam'}
         else:
             return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
     #AKHIR INTENT PROSESBOOKING
