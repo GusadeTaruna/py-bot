@@ -94,11 +94,10 @@ def results():
                         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                     else:
                         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                        header = 'LIST PERINTAH\n'
-                return {'fulfillmentText': '%s, %s' %header %st}
-        else:
-            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': balasan}
+                return {'fulfillmentText': st}
+            else:
+                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+                return {'fulfillmentText': balasan}
     #AKHIR INTENT PROSESBOOKING
 
 
