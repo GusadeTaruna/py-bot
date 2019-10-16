@@ -98,7 +98,7 @@ def results():
                     "fulfillmentMessages": [
                         {
                             "card": {
-                                "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)",
+                                "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)\n",
                                 "subtitle": st
                             },
                         },
@@ -142,8 +142,22 @@ def results():
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                 else:
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-            return {'fulfillmentText': st}
+            balasan = {
+                "fulfillmentMessages": [
+                    {
+                        "card": {
+                            "title": "--- LIST RESOURCE TERSEDIA ---\n\n",
+                            "subtitle": st,
+                            "subtitle": "Ketik listperintah untuk kembali",
+                        },
+                    },
+                ],
+            }
+            return balasan
         else:
+            balasan = 'Inputan tidak dikenali\nCoba input kembali'
+            return {'fulfillmentText': balasan}
+    else:
             balasan = 'Inputan tidak dikenali\nCoba input kembali'
             return {'fulfillmentText': balasan}
     #AKHIR INTENT PROSESBOOKING
