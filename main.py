@@ -42,18 +42,7 @@ def results():
             for row in records:
                 bal = row[0]
                 balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
-                return {'fulfillmentText': balasan}
-
-            action = req['queryResult']['action']['daftar']
-            parameters = req['queryResult']['parameters']
-            # inputan = req['queryResult']['queryText']
-            if parameters.get('perintah'):
-                balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
-                return {'fulfillmentText': balasan}
-            else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': balasan}
-
+            return {'fulfillmentText': balasan}
         else:
             return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
     #AKHIR INTENT SAPA
@@ -82,12 +71,11 @@ def results():
                 for row in records:
                     kodeR = row[0]
                     namaR = row[1]
-                    rep = 'Resource yang ada :\n %s'% namaR+'Kode(%s'% kodeR+')\n\n Apa yang ingin anda pinjam ?'
+                    rep = 'Resource yang ada :\n%s '% namaR+'(%s'% kodeR+')\n\n Apa yang ingin anda pinjam ?'
                 return {'fulfillmentText': rep}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
-
     #AKHIR INTENT PROSESBOOKING
 
 
