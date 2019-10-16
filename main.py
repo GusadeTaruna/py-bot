@@ -50,6 +50,19 @@ def results():
     #AKHIR INTENT cekKaryawan
 
 
+    #AWAL INTENT DAFTAR
+    elif action == 'sapaan':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('sapa'):
+            balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
+            return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
+    #AKHIR INTENT SAPA
+
+
 
 
     #AWAL INTENT DAFTAR
@@ -62,7 +75,7 @@ def results():
         else:
             balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
             return {'fulfillmentText': balasan}
-    #AKHIR INTENT SAPA
+    #AKHIR INTENT DAFTAR
 
 
 
