@@ -28,11 +28,22 @@ def results():
 
     # fetch action from json
     action = req['queryResult']['action']
-
+    #AWAL INTENT DAFTAR
+    if action == 'sapaan':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('sapa'):
+            # if str(parameters.get('sapa')) == str('hai'):
+            balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
+            return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nCoba input lagi'
+            return {'fulfillmentText': balasan}
+    #AKHIR INTENT SAPA
 
 
     #AWAL INTENT cekKaryawan
-    if action == 'karyawan': 
+    elif action == 'karyawan': 
     # return a fulfillment response
         parameters = req['queryResult']['parameters']
         inputan = req['queryResult']['queryText']
@@ -43,25 +54,12 @@ def results():
             records = cursor.fetchall()
             for row in records:
                 bal = row[0]
-            balasan = 'Selamat Datang %s\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
+            balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
             return {'fulfillmentText': balasan}
         else:
             return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
     #AKHIR INTENT cekKaryawan
 
-
-    #AWAL INTENT DAFTAR
-    elif action == 'sapaan':
-        parameters = req['queryResult']['parameters']
-        # inputan = req['queryResult']['queryText']
-        if parameters.get('sapa'):
-            if str(parameters.get('sapa')) == str('hai'):
-                balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
-                return {'fulfillmentText': balasan}
-            else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nCoba input lagi'
-                return {'fulfillmentText': balasan}
-    #AKHIR INTENT SAPA
 
 
     #AWAL INTENT DAFTAR
@@ -69,12 +67,12 @@ def results():
         parameters = req['queryResult']['parameters']
         # inputan = req['queryResult']['queryText']
         if parameters.get('perintah'):
-            if str(parameters.get('perintah')) == str('listperintah'):
-                balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
-                return {'fulfillmentText': balasan}
-            else:
-                balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-                return {'fulfillmentText': balasan}
+            # if str(parameters.get('perintah')) == str('listperintah'):
+            balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
+            return {'fulfillmentText': balasan}
+        else:
+            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+            return {'fulfillmentText': balasan}
     #AKHIR INTENT DAFTAR
 
 
