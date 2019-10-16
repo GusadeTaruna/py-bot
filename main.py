@@ -85,16 +85,16 @@ def results():
         # inputan = req['queryResult']['queryText']
         if parameters.get('booking'):
             if str(parameters.get('booking')) == str('Booking'.lower()) or str('1'):
-                sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
-                cursor.execute(sql)
+                queryR = "select kode_resource,nama_resource from tb_resource"
+                cursor.execute(queryR)
                 records = cursor.fetchall()
                 st = ''
                 for row in records:
                     if row[0]==0:
-                        st = st + '--- RESOURCE YANG TERSEDIA ---\n\nKode: %s'%row[1]+', Nama: %s'%row[2]+"\n\n Masukkan kode resource yang ingin dipinjam"
+                        st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                     else:
                         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                return {'fulfillmentText': st}
+                return {'fulfillmentText': 'List resource\n {}'format(st)}
             else:
                 balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
                 return {'fulfillmentText': balasan}
@@ -129,7 +129,7 @@ def results():
             st = ''
             for row in records:
                 if row[0]==0:
-                    st = st + '--- RESOURCE YANG TERSEDIA ---\n\nKode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+                    st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                 else:
                     st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
             return {'fulfillmentText': st}
