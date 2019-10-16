@@ -66,7 +66,6 @@ def results():
 
 
 
-
     #AWAL INTENT PROSESBOOKING
     elif action == 'pesan':
         parameters = req['queryResult']['parameters']
@@ -97,14 +96,34 @@ def results():
             sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
             cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
             mySQLconnection.commit()
-            return {'fulfillmentText': 'Terima kasih!'}
+            return {'fulfillmentText': 'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'}
         else:
-            return {'fulfillmentText': 'ID Karyawan tidak dikenali\nCoba input lagi'}
+            return {'fulfillmentText': 'Kode resource tidak dikenali\nCoba input lagi'}
+    #AKHIR INTENT PROSESBOOKING
+
+
+    #AWAL INTENT PROSESBOOKING
+    elif action == 'daftarResource':
+        parameters = req['queryResult']['parameters']
+        # inputan = req['queryResult']['queryText']
+        if parameters.get('resource'):
+            if str(parameters.get('booking')) == str('Booking'.lower()):
+                sql = "select kode_resource,nama_resource from tb_resource"
+                cursor.execute(queryR)
+                records = cursor.fetchall()
+                for row in records:
+                    kodeR = row[0]
+                    namaR = row[1]
+                    rep = 'Resource yang ada :\n%s '% namaR+'(%s'% kodeR+')\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
+                return {'fulfillmentText': rep}
+            else:
+                balasan = 'Inputan tidak dikenali\nCoba input kembali'
+                return {'fulfillmentText': balasan}
     #AKHIR INTENT PROSESBOOKING
 
 
     else:
-        return {'fulfillmentText': 'not'}
+        return {'fulfillmentText': 'anda mungkin salah ketik\nCoba input kembali'}
 
 
 # def MySQL(querry):
