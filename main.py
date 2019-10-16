@@ -45,31 +45,30 @@ def results():
         balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
         return {'fulfillmentText': balasan}
 
-    elif parameters.get('booking'):
-        if str(parameters.get('booking')) == str('pesan') or str('1'):
-            sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
-            cursor.execute(sql)
-            records = cursor.fetchall()
-            st = ''
-            for row in records:
-                if row[0]==0:
-                    st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-                else:
-                    st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
-            response = {
-                "fulfillmentMessages": [
-                    {
-                        "card": {
-                            "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)\n",
-                            "subtitle": st
-                        },
+    elif parameters.get('menusatu'):
+        sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
+        cursor.execute(sql)
+        records = cursor.fetchall()
+        st = ''
+        for row in records:
+            if row[0]==0:
+                st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+            else:
+                st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+        response = {
+            "fulfillmentMessages": [
+                {
+                    "card": {
+                        "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)\n",
+                        "subtitle": st
                     },
-                ],
-            }
-            return response
-        else:
-            balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-            return {'fulfillmentText': balasan}
+                },
+            ],
+        }
+        return response
+    else:
+        balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
+        return {'fulfillmentText': balasan}
     #AKHIR INTENT PROSESBOOKING
 
 
