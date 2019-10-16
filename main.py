@@ -148,6 +148,7 @@ def results():
                         "card": {
                             "title": "--- LIST RESOURCE TERSEDIA ---\n\n",
                             "subtitle": st,
+                            "subtitle": "test",
                         },
                     },
                 ],
