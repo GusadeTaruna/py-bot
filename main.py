@@ -94,25 +94,16 @@ def results():
                 #         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
                 #     else:
                 #         st = st + 'Kode: %s'%row[1]+', Nama: %s'%row[2]+"\n"
+                # return {'fulfillmentText': st}
                 response = {
-                    'fulfillmentMessages': [
+                    "fulfillmentMessages": [
                         {
                             "card": {
-                                "title": "Menu",
-                                "subtitle": "Halo test, Silahkan pilih menu di bawah",
-                                "buttons": [
-                                    {
-                                        "text": "Surat izin Usaha Perdagangan",
-                                        "postback": "usaha perdagangan"
-                                    },
-                                    {
-                                        "text": "Pengajuan Izin Reklame",
-                                        "postback": "izin reklame"
-                                    }
-                                ]
-                            }
-                        }
-                    ]
+                                "title": "hmm",
+                                "subtitle": "yeah"
+                            },
+                        },
+                    ],
                 }
                 return response
             else:
