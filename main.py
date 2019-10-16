@@ -30,7 +30,6 @@ def results():
     if parameters.get('sapa'):
         balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
         return {'fulfillmentText': balasan}
-    #AKHIR INTENT SAPA
 
     elif parameters.get('kode'):
         inputan = req['queryResult']['queryText']
@@ -41,17 +40,12 @@ def results():
             bal = row[0]
         balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
         return {'fulfillmentText': balasan}
-    #AKHIR INTENT cekKaryawan
 
     elif parameters.get('perintah'):
         balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
         return {'fulfillmentText': balasan}
-    else:
-        balasan = 'Inputan yang anda masukkan tidak dikenali!\nKetik list untuk melihat daftar perintah yang tersedia'
-        return {'fulfillmentText': balasan}
-    #AKHIR INTENT DAFTAR
 
-    if parameters.get('booking'):
+    elif parameters.get('booking'):
         if str(parameters.get('booking')) == str('pesan') or str('1'):
             sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
             cursor.execute(sql)
