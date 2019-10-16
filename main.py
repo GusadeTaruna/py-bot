@@ -41,7 +41,7 @@ def results():
         balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
         return {'fulfillmentText': balasan}
     else:
-        balasan = 'Gagal' % bal
+        balasan = 'Gagal'
         return {'fulfillmentText': balasan}        
 
     elif parameters.get('perintah'):
