@@ -147,8 +147,24 @@ def proses_menu_satu(req):
         # sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
-        response = {
-            'fulfillmentText': "DATA BOOKING BERHASIL"
+        sql2 = "SELECT * FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
+        cursor.execute(sql2)
+        records = cursor.fetchall()
+        st = ''
+        for row in records:
+            if row[0]==0:
+                st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Peminjaman: %s\n'%row[3]+"\n"
+            else:
+                st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Peminjaman: %s\n'%row[3]+"\n"
+        balasan = {
+            "fulfillmentMessages": [
+                {
+                    "card": {
+                        "title": "BOOKING BERHASIL DILAKUKAN\n(Ketik listperintah untuk kembali ke awal)\n\n--- DATA BOOKING ---",
+                        "subtitle": st
+                    },
+                },
+            ],
         }
         return response
 
