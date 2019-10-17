@@ -163,21 +163,22 @@ def proses_menu_satu_tanggal(req):
         # sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (tglKembali))
         mySQLconnection.commit()
-        sql2 = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman,tanggal_kembali FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
-        cursor.execute(sql2)
-        records = cursor.fetchall()
-        st = ''
-        for row in records:
-            if row[0]==0:
-                st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
-            else:
-                st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
+
+        # sql2 = "SELECT * FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
+        # cursor.execute(sql2)
+        # records = cursor.fetchall()
+        # st = ''
+        # for row in records:
+        #     if row[0]==0:
+        #         st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
+        #     else:
+        #         st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
         response = {
             "fulfillmentMessages": [
                 {
                     "card": {
                         "title": "--- DATA BOOKING BERHASIL DIBUAT! ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
-                        "subtitle": st
+                        # "subtitle": st
                     },
                 },
             ],
