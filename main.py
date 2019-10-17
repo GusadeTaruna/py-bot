@@ -76,6 +76,11 @@ def cek_karyawan(req):
         response = {
             'fulfillmentText': "Selamat Datang {}\n\nKetik listperintah untuk menampilkan perintah yang tersedia".format(bal)
         }
+        
+        sql2 = "INSERT INTO tb_pinjam_resource (kode_karyawan) VALUES (%s)"
+        cursor.execute(sql, (inputan,))
+        mySQLconnection.commit()
+
         return response
 
 
@@ -138,11 +143,12 @@ def proses_menu_satu(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('kodepinjam'):
         kodeResource = req['queryResult']['queryText']
-        sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
+        sql = "UPDATE tb_pinjam_resource SET tanggal_peminjaman = %s, kode_resource =  %s ORDER BY id DESC LIMIT 1"
+        # sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
-            'fulfillmentText': "DATA MASUK"
+            'fulfillmentText': "DATA BOOKING BERHASIL DIBUAT !\n\n Ketik listperintah untuk kembali ke awal "
         }
         return response
 
