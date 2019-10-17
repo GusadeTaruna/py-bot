@@ -44,13 +44,13 @@ def webhook():
         return menu_satu(req)
 
     elif action == 'book':
+        return proses_menu_satu(req)
+
+    elif action == 'daftarResource':
         return menu_dua(req)
 
     elif action == 'pinjaman':
         return menu_tiga(req)
-
-    elif action == 'daftarResource':
-        return proses_menu_satu(req)
 
     return jsonify(request.get_json())
 
@@ -134,7 +134,7 @@ def menu_satu(req):
         return response
 
 
-def menu_dua(req):
+def proses_menu_satu(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('kodepinjam'):
         kodeResource = req['queryResult']['queryText']
@@ -147,7 +147,7 @@ def menu_dua(req):
         return response
 
 
-def menu_tiga(req):
+def menu_dua(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('resource'):
         sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
@@ -172,7 +172,7 @@ def menu_tiga(req):
         return balasan
 
 
-def proses_menu_satu(req):
+def menu_tiga(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('listpinjam'):
         sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource"
