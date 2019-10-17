@@ -59,7 +59,11 @@ def awal_cakap(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('sapa'):
         response = {
-            'fulfillmentText': "SELAMAT DATANG! \n input ID karyawan untuk mulai"
+            'fulfillmentText': "SELAMAT DATANG! \ninput ID karyawan untuk mulai"
+        }
+    else:
+        response = {
+            'fulfillmentText': "ID Karyawan tidak terdaftar \nCoba input ulang"
         }
         return response
 
@@ -197,7 +201,7 @@ def menu_dua(req):
 def menu_tiga(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('listpinjam'):
-        sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource WHERE kode_karyawan OR kode_resource OR tanggal_peminjaman IS NOT NULL"
+        sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource WHERE kode_karyawan IS NOT NULL AND kode_resource IS NOT NULL AND tanggal_peminjaman IS NOT NULL"
         cursor.execute(sql)
         records = cursor.fetchall()
         st = ''
