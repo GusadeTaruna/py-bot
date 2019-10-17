@@ -20,7 +20,7 @@ except Error as e :
     print ("Error while connecting to MySQL", e)
 
 
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     # return response
 
@@ -30,7 +30,6 @@ def webhook():
         action = req.get('queryResult').get('action')
     except AttributeError:
         return 'json error'
-
 
     if action == 'sapaan':
         return awal_cakap(req)
