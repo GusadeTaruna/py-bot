@@ -156,7 +156,7 @@ def proses_menu_satu(req):
                 st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Peminjaman: %s\n'%row[3]+"\n"
             else:
                 st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Peminjaman: %s\n'%row[3]+"\n"
-        balasan = {
+        response = {
             "fulfillmentMessages": [
                 {
                     "card": {
