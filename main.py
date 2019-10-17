@@ -43,13 +43,13 @@ def webhook():
     elif action == 'pesan':
         return menu_satu(req)
 
-    elif action == 'daftarResource':
+    elif action == 'book':
         return menu_dua(req)
 
     elif action == 'pinjaman':
         return menu_tiga(req)
 
-    elif action == 'book':
+    elif action == 'daftarResource':
         return proses_menu_satu(req)
 
     return jsonify(request.get_json())
@@ -138,7 +138,7 @@ def menu_dua(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('kodepinjam'):
         kodeResource = req['queryResult']['queryText']
-        sql = "insert into tb_pinjam_resource (tanggal_peminjaman, kode_resource) values (%s, %s)"
+        sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
