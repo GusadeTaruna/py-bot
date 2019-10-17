@@ -59,14 +59,7 @@ def awal_cakap(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('sapa'):
         response = {
-            "fulfillmentMessages": [
-                {
-                    "card": {
-                        "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)\n",
-                        "subtitle": "cobak"
-                    },
-                },
-            ],
+            'fulfillmentText': "SELAMAT DATANG! \n input ID karyawan untuk mulai"
         }
         return response
 
@@ -81,7 +74,7 @@ def cek_karyawan(req):
         for row in records:
             bal = row[0]
         response = {
-            'fulfillmentText': "Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia" % bal
+            'fulfillmentText': "Selamat Datang {}\n\nKetik listperintah untuk menampilkan perintah yang tersedia".format(bal)
         }
         return response
 
