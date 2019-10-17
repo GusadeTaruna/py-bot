@@ -142,7 +142,7 @@ def menu_dua(req):
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
-            'fulfillmentText': "DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia"
+            'fulfillmentText': "DATA MASUK"
         }
         return response
 
