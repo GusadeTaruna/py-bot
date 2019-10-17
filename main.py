@@ -52,6 +52,9 @@ def webhook():
     elif action == 'pinjaman':
         return menu_tiga(req)
 
+    else:
+        return undefined_input()
+
     return jsonify(request.get_json())
 
 
@@ -80,10 +83,7 @@ def cek_karyawan(req):
         sql2 = "INSERT INTO tb_pinjam_resource (kode_karyawan) VALUES (%s)"
         cursor.execute(sql2, (inputan,))
         mySQLconnection.commit()
-    else:
-        response = {
-            'fulfillmentText': "ID Karyawan tidak terdaftar \nCoba input ulang"
-        }
+
         return response
 
 
@@ -220,6 +220,13 @@ def menu_tiga(req):
             ],
         }
         return balasan
+
+
+def undefined_input():
+    response = {
+        'fulfillmentText': "Inputan Salah, Coba input ulang"
+    }
+    return balasan
 
 
 # run the app
