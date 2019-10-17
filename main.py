@@ -52,9 +52,6 @@ def webhook():
     elif action == 'pinjaman':
         return menu_tiga(req)
 
-    else:
-        return undefined_input()
-
     return jsonify(request.get_json())
 
 
@@ -220,14 +217,6 @@ def menu_tiga(req):
             ],
         }
         return balasan
-
-
-def undefined_input():
-    response = {
-        'fulfillmentText': "Inputan Salah, Coba input ulang"
-    }
-    return balasan
-
 
 # run the app
 if __name__ == '__main__':
