@@ -9,6 +9,16 @@ import calendar
 # initialize the flask app
 app = Flask(__name__)
 
+try:
+    mySQLconnection = mysql.connector.connect(host='www.db4free.net',
+        database='db_resource',
+        user='gusade',
+        password='gusade09')
+    cursor = mySQLconnection .cursor()
+
+except Error as e :
+    print ("Error while connecting to MySQL", e)
+
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
