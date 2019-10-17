@@ -164,7 +164,7 @@ def proses_menu_satu_tanggal(req):
         cursor.execute(sql, (tglKembali))
         mySQLconnection.commit()
         sql2 = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman,tanggal_kembali FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
-        cursor.execute(sql)
+        cursor.execute(sql2)
         records = cursor.fetchall()
         st = ''
         for row in records:
