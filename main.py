@@ -9,39 +9,64 @@ import calendar
 # initialize the flask app
 app = Flask(__name__)
 
-# function for responses
-def results():
-    # build a request object
-    req = request.get_json(force=True)
 
+@app.route('/webhook', methods=['GET', 'POST'])
+def webhook():
+    # return response
+
+    req = request.get_json(silent=True, force=True)
 
     try:
-        mySQLconnection = mysql.connector.connect(host='www.db4free.net',
-                    database='db_resource',
-                    user='gusade',
-                    password='gusade09')
-        cursor = mySQLconnection .cursor()
+        action = req.get('queryResult').get('action')
+    except AttributeError:
+        return 'json error'
 
-    except Error as e :
-        print ("Error while connecting to MySQL", e)
 
+    if action == 'sapaan':
+        res = awal_cakap(req)
+
+    elif action == 'karyawan':
+        res = cek_karyawan(req)
+
+    elif action == 'daftar':
+        res = list_perintah(req)
+
+    elif action == 'pesan':
+        res = menu_satu(req)
+
+    elif action == 'daftarResource':
+        res = menu_dua(req)
+
+    elif action == 'pinjaman':
+        res = menu_tiga(req)
+
+    elif action == 'book':
+        res = proses_menu_satu(req)
+
+    return jsonify(res)
+
+
+def awal_cakap(req):
     parameters = req['queryResult']['parameters']
-
     if parameters.get('sapa'):
-        balasan = 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
-        return {'fulfillmentText': balasan}
+        return 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
 
-    elif parameters.get('kode'):
+
+def cek_karyawan(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('kode'):
         inputan = req['queryResult']['queryText']
         sql = "select nama_karyawan from tb_karyawan where kode_karyawan=%s"
         cursor.execute(sql, (inputan,))
         records = cursor.fetchall()
         for row in records:
             bal = row[0]
-        balasan = 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
-        return {'fulfillmentText': balasan}       
+        return 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
 
-    elif parameters.get('perintah'):
+
+def list_perintah(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('perintah'):
         # balasan = '---- LIST PERINTAH YANG TERSEDIA----\n\n1. booking (Untuk pesan resource)\n2. lihatresource (Untuk melihat ketersediaan resource)\n3. lihatdatapinjam (Untuk melihat data peminjaman resource)'
         response = {
             'fulfillmentMessages': [
@@ -66,10 +91,12 @@ def results():
                 }
             ]
         }
-
         return response
 
-    elif parameters.get('menusatu'):
+
+def menu_satu(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('menusatu'):
         sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
         cursor.execute(sql)
         records = cursor.fetchall()
@@ -91,14 +118,20 @@ def results():
         }
         return response
 
-    elif parameters.get('kodepinjam'):
+
+def menu_dua(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('kodepinjam'):
         kodeResource = req['queryResult']['queryText']
         sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
-        return {'fulfillmentText': 'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'}
+        return 'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
 
-    elif parameters.get('resource'):
+
+def menu_tiga(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('resource'):
         sql = "SELECT id,kode_resource,nama_resource FROM tb_resource"
         cursor.execute(sql)
         records = cursor.fetchall()
@@ -120,7 +153,10 @@ def results():
         }
         return balasan
 
-    elif parameters.get('listpinjam'):
+
+def proses_menu_satu(req):
+    parameters = req['queryResult']['parameters']
+    if parameters.get('listpinjam'):
         sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource"
         cursor.execute(sql)
         records = cursor.fetchall()
@@ -142,42 +178,6 @@ def results():
         }
         return balasan
 
-    else:
-        balasan = 'Inputan tidak dikenali\nCoba input kembali'
-        return {'fulfillmentText': balasan}
-    #AKHIR INTENT PROSESBOOKING
-    # else:
-    #     return {'fulfillmentText': 'anda mungkin salah ketik\nCoba input kembali'}
-
-
-# def MySQL(querry):
-#     try:
-#         mySQLconnection = mysql.connector.connect(host='www.db4free.net',
-#                     database='db_resource',
-#                     user='gusade',
-#                     password='gusade09')
-#         sql_select_Query = querry
-#         cursor = mySQLconnection .cursor()
-#         cursor.execute(sql_select_Query)
-#         records = cursor.fetchall()
-#         return records
-
-#     except Error as e :
-#         print ("Error while connecting to MySQL", e)
-
-#     finally:
-#         if(mySQLconnection .is_connected()):
-#             mySQLconnection.close()
-#             print("MySQL connection is closed")
-
-
-    
-
-# create a route for webhook
-@app.route('/webhook', methods=['GET', 'POST'])
-def webhook():
-    # return response
-    return make_response(jsonify(results()))
 
 # run the app
 if __name__ == '__main__':
