@@ -23,27 +23,27 @@ def webhook():
 
 
     if action == 'sapaan':
-        res = awal_cakap(req)
+        return awal_cakap(req)
 
     elif action == 'karyawan':
-        res = cek_karyawan(req)
+        return cek_karyawan(req)
 
     elif action == 'daftar':
-        res = list_perintah(req)
+        return list_perintah(req)
 
     elif action == 'pesan':
-        res = menu_satu(req)
+        return menu_satu(req)
 
     elif action == 'daftarResource':
-        res = menu_dua(req)
+        return menu_dua(req)
 
     elif action == 'pinjaman':
-        res = menu_tiga(req)
+        return menu_tiga(req)
 
     elif action == 'book':
-        res = proses_menu_satu(req)
+        return proses_menu_satu(req)
 
-    return jsonify(res)
+    return jsonify(request.get_json())
 
 
 def awal_cakap(req):
