@@ -20,7 +20,7 @@ except Error as e :
     print ("Error while connecting to MySQL", e)
 
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     # return response
 
@@ -59,9 +59,16 @@ def awal_cakap(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('sapa'):
         response = {
-            'fulfillmentText': "Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia" % bal
+            "fulfillmentMessages": [
+                {
+                    "card": {
+                        "title": "-- LIST RESOURCE TERSEDIA --\n(masukkan kode resource untuk booking resource yang diinginkan)\n",
+                        "subtitle": "cobak"
+                    },
+                },
+            ],
         }
-        return jsonify(response)
+        return response
 
 
 def cek_karyawan(req):
@@ -164,7 +171,7 @@ def menu_tiga(req):
                 {
                     "card": {
                         "title": "--- LIST RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
-                        "subtitle": st,
+                        "subtitle": st
                     },
                 },
             ],
@@ -189,7 +196,7 @@ def proses_menu_satu(req):
                 {
                     "card": {
                         "title": "--- DATA BOOKING RESOURCE ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
-                        "subtitle": st,
+                        "subtitle": st
                     },
                 },
             ],
