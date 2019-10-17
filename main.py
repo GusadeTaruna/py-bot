@@ -138,7 +138,7 @@ def menu_dua(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('kodepinjam'):
         kodeResource = req['queryResult']['queryText']
-        sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
+        sql = "insert into tb_pinjam_resource (tanggal_peminjaman, kode_resource) values (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
