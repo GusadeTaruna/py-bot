@@ -46,9 +46,6 @@ def webhook():
     elif action == 'book':
         return proses_menu_satu(req)
 
-    elif action == 'kembali':
-        return proses_menu_satu_tanggal(req)
-
     elif action == 'daftarResource':
         return menu_dua(req)
 
@@ -151,37 +148,7 @@ def proses_menu_satu(req):
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
-            'fulfillmentText': "Sampai tanggal berapa anda ingin booking ? (Format yyyy-mm-dd)"
-        }
-        return response
-
-def proses_menu_satu_tanggal(req):
-    parameters = req['queryResult']['parameters']
-    if parameters.get('tanggal'):
-        tglKembali = req['queryResult']['queryText']
-        sql = "UPDATE tb_pinjam_resource SET tanggal_kembali = {}".format(tglKembali)+"ORDER BY id DESC LIMIT 1"
-        # sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
-        cursor.execute(sql)
-        mySQLconnection.commit()
-
-        # sql2 = "SELECT * FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
-        # cursor.execute(sql2)
-        # records = cursor.fetchall()
-        # st = ''
-        # for row in records:
-        #     if row[0]==0:
-        #         st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
-        #     else:
-        #         st = st + 'Kode Karyawan: %s\n'%row[1]+'Kode Resource: %s\n'%row[2]+'Tanggal Pinjam: %s\n'%row[3]+'Tanggal Kembali: %s'%row[4]+"\n"
-        response = {
-            "fulfillmentMessages": [
-                {
-                    "card": {
-                        "title": "--- DATA BOOKING BERHASIL DIBUAT! ---\n\n(Ketik listperintah untuk kembali ke awal)\n",
-                        # "subtitle": st
-                    },
-                },
-            ],
+            'fulfillmentText': "DATA BOOKING BERHASIL"
         }
         return response
 
