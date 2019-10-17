@@ -197,7 +197,7 @@ def menu_dua(req):
 def menu_tiga(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('listpinjam'):
-        sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource"
+        sql = "SELECT id,kode_karyawan,kode_resource,tanggal_peminjaman FROM tb_pinjam_resource WHERE kode_karyawan OR kode_resource OR tanggal_peminjaman IS NOT NULL"
         cursor.execute(sql)
         records = cursor.fetchall()
         st = ''
