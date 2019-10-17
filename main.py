@@ -49,7 +49,10 @@ def webhook():
 def awal_cakap(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('sapa'):
-        return 'SELAMAT DATANG! \n input ID karyawan untuk mulai'
+        response = {
+            'fulfillmentText': "Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia" % bal
+        }
+        return response
 
 
 def cek_karyawan(req):
@@ -62,7 +65,7 @@ def cek_karyawan(req):
         for row in records:
             bal = row[0]
         response = {
-            'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
+            'fulfillmentText': "Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia" % bal
         }
         return response
 
@@ -130,7 +133,7 @@ def menu_dua(req):
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
         response = {
-            'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
+            'fulfillmentText': "DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia"
         }
         return response
 
