@@ -76,9 +76,9 @@ def cek_karyawan(req):
         response = {
             'fulfillmentText': "Selamat Datang {}\n\nKetik listperintah untuk menampilkan perintah yang tersedia".format(bal)
         }
-        
+
         sql2 = "INSERT INTO tb_pinjam_resource (kode_karyawan) VALUES (%s)"
-        cursor.execute(sql, (inputan,))
+        cursor.execute(sql2, (inputan,))
         mySQLconnection.commit()
 
         return response
