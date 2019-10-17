@@ -61,10 +61,6 @@ def awal_cakap(req):
         response = {
             'fulfillmentText': "SELAMAT DATANG! \ninput ID karyawan untuk mulai"
         }
-    else:
-        response = {
-            'fulfillmentText': "ID Karyawan tidak terdaftar \nCoba input ulang"
-        }
         return response
 
 
@@ -79,6 +75,10 @@ def cek_karyawan(req):
             bal = row[0]
         response = {
             'fulfillmentText': "Selamat Datang {}\n\nKetik listperintah untuk menampilkan perintah yang tersedia".format(bal)
+        }
+        else:
+        response = {
+            'fulfillmentText': "ID Karyawan tidak terdaftar \nCoba input ulang"
         }
 
         sql2 = "INSERT INTO tb_pinjam_resource (kode_karyawan) VALUES (%s)"
