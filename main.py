@@ -61,7 +61,10 @@ def cek_karyawan(req):
         records = cursor.fetchall()
         for row in records:
             bal = row[0]
-        return 'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
+        response = {
+            'Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia' % bal
+        }
+        return response
 
 
 def list_perintah(req):
@@ -126,7 +129,10 @@ def menu_dua(req):
         sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
         cursor.execute(sql, (date.today().strftime("%Y-%m-%d"), kodeResource))
         mySQLconnection.commit()
-        return 'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
+        response = {
+            'DATA BOOKING BERHASIL DIBUAT !\n\nKetik listperintah untuk melihat daftar perintah yang tersedia'
+        }
+        return response
 
 
 def menu_tiga(req):
