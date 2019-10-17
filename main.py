@@ -61,7 +61,7 @@ def awal_cakap(req):
         response = {
             'fulfillmentText': "Selamat Datang %s\n\nKetik listperintah untuk menampilkan perintah yang tersedia" % bal
         }
-        return response
+        return jsonify(response)
 
 
 def cek_karyawan(req):
