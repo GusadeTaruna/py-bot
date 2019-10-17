@@ -159,9 +159,9 @@ def proses_menu_satu_tanggal(req):
     parameters = req['queryResult']['parameters']
     if parameters.get('tanggal'):
         tglKembali = req['queryResult']['queryText']
-        sql = "UPDATE tb_pinjam_resource SET tanggal_kembali = %s ORDER BY id DESC LIMIT 1"
+        sql = "UPDATE tb_pinjam_resource SET tanggal_kembali = {}".format(tglKembali)+"ORDER BY id DESC LIMIT 1"
         # sql = "INSERT INTO tb_pinjam_resource (tanggal_peminjaman, kode_resource) VALUES (%s, %s)"
-        cursor.execute(sql, (tglKembali))
+        cursor.execute(sql)
         mySQLconnection.commit()
 
         # sql2 = "SELECT * FROM tb_pinjam_resource ORDER BY id DESC LIMIT 1"
